@@ -4,6 +4,7 @@ services:
   verdaccio:
     image: verdaccio/verdaccio
     container_name: "verdaccio"
+    restart: always
     environment:
       - VERDACCIO_PORT=4873
     ports:

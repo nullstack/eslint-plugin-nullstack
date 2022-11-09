@@ -11,7 +11,7 @@ module.exports = {
   meta: {
     type: 'problem',
     docs: {
-      description: 'Disallow the use of undeclared variables unless mentioned in `/*global */` comments',
+      description: 'Disallow the use of undeclared variables unless mentioned in `/* global */` comments',
       recommended: true,
       url: 'https://eslint.org/docs/rules/no-undef',
     },
