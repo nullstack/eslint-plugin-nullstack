@@ -1,5 +1,5 @@
 /**
- * Based on: https://github.com/eslint/eslint/blob/main/lib/rules/no-undef.js
+ * Based on: https://github.com/eslint/eslint/blob/v8.27.0/lib/rules/no-undef.js
  */
 
 function hasTypeOfOperator(node) {

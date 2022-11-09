@@ -1,6 +1,9 @@
 module.exports = {
   rules: {
     'no-undef': require('./rules/no-undef'),
+    prettier: require('./rules/prettier'),
+    'self-closing-comp': require('eslint-plugin-react/lib/rules/self-closing-comp'),
+    'jsx-boolean-value': require('eslint-plugin-react/lib/rules/jsx-boolean-value'),
   },
   configs: {
     recommended: {
@@ -16,7 +19,6 @@ module.exports = {
         require.resolve('./configs/unused-imports'),
         require.resolve('./configs/order-imports'),
         require.resolve('./configs/nullstack'),
-        require.resolve('./configs/prettier'),
       ],
       parser: '@typescript-eslint/parser',
       parserOptions: {
