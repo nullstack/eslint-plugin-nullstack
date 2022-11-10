@@ -13,12 +13,13 @@ module.exports = {
         browser: true,
       },
       extends: [
-        'eslint:recommended',
+        './configs/errors',
+        './configs/best-practices',
         'plugin:@typescript-eslint/recommended',
-        require.resolve('./configs/imports'),
-        require.resolve('./configs/unused-imports'),
-        require.resolve('./configs/order-imports'),
-        require.resolve('./configs/nullstack'),
+        './configs/imports',
+        './configs/unused-imports',
+        './configs/order-imports',
+        './configs/nullstack',
       ],
       parser: '@typescript-eslint/parser',
       parserOptions: {
