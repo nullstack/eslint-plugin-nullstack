@@ -15,13 +15,12 @@ module.exports = {
       extends: [
         './configs/errors',
         './configs/best-practices',
-        'plugin:@typescript-eslint/recommended',
+        './configs/typescript',
         './configs/imports',
         './configs/unused-imports',
         './configs/order-imports',
         './configs/nullstack',
       ],
-      parser: '@typescript-eslint/parser',
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',

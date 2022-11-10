@@ -271,6 +271,12 @@ module.exports = {
     'prefer-rest-params': 'warn',
 
     /**
+     * Require spread operators instead of `.apply()`
+     * @see https://eslint.org/docs/latest/rules/prefer-spread
+     */
+    'prefer-spread': 'warn',
+
+    /**
      * Require template literals instead of string concatenation
      * @see https://eslint.org/docs/latest/rules/prefer-template
      */
