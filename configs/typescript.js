@@ -6,6 +6,7 @@ module.exports = {
       files: ['*.ts', '*.tsx', '*.nts'],
       rules: {
         /**
+         * Disables rules which are already handled by TypeScript.
          * Based on: https://github.com/typescript-eslint/typescript-eslint/blob/v5.42.0/packages/eslint-plugin/src/configs/eslint-recommended.ts
          */
 

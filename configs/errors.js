@@ -229,12 +229,6 @@ module.exports = {
     'no-this-before-super': 'error',
 
     /**
-     * Disallow confusing multiline expressions
-     * @see https://eslint.org/docs/latest/rules/no-unexpected-multiline
-     */
-    'no-unexpected-multiline': 'error',
-
-    /**
      * Disallow unreachable code after `return`, `throw`, `continue`, and `break` statements
      * @see https://eslint.org/docs/latest/rules/no-unreachable
      */
