@@ -16,7 +16,7 @@ $ yarn add -D eslint-plugin-nullstack
 
 Once the `eslint-plugin-nullstack` package is installed, you can use it by specifying `plugin:nullstack/recommended` in the [`extends`](https://eslint.org/docs/latest/user-guide/configuring/configuration-files#extending-configuration-files) section of your [ESLint configuration](http://eslint.org/docs/user-guide/configuring).
 
-```json
+```jsonc
 // .eslintrc
 
 {
@@ -24,7 +24,7 @@ Once the `eslint-plugin-nullstack` package is installed, you can use it by speci
 }
 ```
 
-```json
+```jsonc
 // .prettierrc
 
 {
@@ -36,7 +36,7 @@ Once the `eslint-plugin-nullstack` package is installed, you can use it by speci
 }
 ```
 
-```json
+```jsonc
 // package.json
 
 "scripts": {
