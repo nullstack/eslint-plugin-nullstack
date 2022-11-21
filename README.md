@@ -14,7 +14,7 @@ $ yarn add -D eslint-plugin-nullstack
 
 ## Usage
 
-Once the `eslint-plugin-nullstack` package is installed, you can use it by specifying `plugin:nullstack/recommended` in the [`extends`](https://eslint.org/docs/latest/user-guide/configuring/configuration-files#extending-configuration-files) section of your [ESLint configuration](http://eslint.org/docs/user-guide/configuring).
+Once the `eslint-plugin-nullstack` package is installed, you can use it by specifying `plugin:nullstack/recommended` in the [`extends`](https://eslint.org/docs/latest/user-guide/configuring/configuration-files#extending-configuration-files) section of your [ESLint configuration](http://eslint.org/docs/user-guide/configuring)
 
 ```jsonc
 // .eslintrc
@@ -44,7 +44,27 @@ Once the `eslint-plugin-nullstack` package is installed, you can use it by speci
 }
 ```
 
+```jsonc
+// vscode - settings.json
+
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
+```
+
+> **IMPORTANT**: Do not use [`Prettier Formatter for Visual Studio Code`](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) as this plugin uses a custom `prettier` implementation based on [`eslint-plugin-prettier`](https://github.com/prettier/eslint-plugin-prettier)
+
 ## About
+
+Main features:
+
+- Recommended rules to help find possible logical errors in code
+- Automatic organize imports
+- Automatic remove unused imports
+- Automatic code formatting (custom prettier implementation)
 
 This plugin is based on the following plugins and configurations:
 
