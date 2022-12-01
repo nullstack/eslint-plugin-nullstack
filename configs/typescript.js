@@ -51,23 +51,10 @@ module.exports = {
         '@typescript-eslint/ban-types': 'error',
 
         /**
-         * Disallow empty functions.
-         * @see https://typescript-eslint.io/rules/no-empty-function
-         */
-        'no-empty-function': 'off',
-        '@typescript-eslint/no-empty-function': 'warn',
-
-        /**
          * Disallow the declaration of empty interfaces.
          * @see https://typescript-eslint.io/rules/no-empty-interface
          */
         '@typescript-eslint/no-empty-interface': 'warn',
-
-        /**
-         * Disallow the `any` type.
-         * @see https://typescript-eslint.io/rules/no-explicit-any
-         */
-        '@typescript-eslint/no-explicit-any': 'warn',
 
         /**
          * Disallow extra non-null assertions.
@@ -158,4 +145,4 @@ module.exports = {
       },
     },
   ],
-};
+}

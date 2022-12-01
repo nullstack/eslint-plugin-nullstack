@@ -3,8 +3,8 @@
  */
 
 function hasTypeOfOperator(node) {
-  const parent = node.parent;
-  return parent.type === 'UnaryExpression' && parent.operator === 'typeof';
+  const parent = node.parent
+  return parent.type === 'UnaryExpression' && parent.operator === 'typeof'
 }
 
 module.exports = {
@@ -32,35 +32,43 @@ module.exports = {
     },
   },
   create(context) {
-    const options = context.options[0];
-    const considerTypeOf = (options && options.typeof === true) || false;
+    const options = context.options[0]
+    const considerTypeOf = (options && options.typeof === true) || false
 
-    const innerComponents = new Map();
+    const innerComponentsMap = new Map()
+
+    let className = null
 
     return {
+      ClassDeclaration(node) {
+        className = node.body.parent.id?.name
+      },
       'FunctionExpression:exit'(node) {
-        const name = node.parent.key?.name;
+        const name = node.parent.key?.name
         if (name && name !== 'render' && name.startsWith('render')) {
-          innerComponents.set(name.replace('render', ''), true);
+          const innerComponentName = `${className}.${name.replace('render', '')}`
+          innerComponentsMap.set(innerComponentName, true)
         }
       },
       'Program:exit'(/* node */) {
-        const globalScope = context.getScope();
+        const globalScope = context.getScope()
 
         globalScope.through.forEach((ref) => {
-          const identifier = ref.identifier;
+          const identifier = ref.identifier
+          const className = ref.from.upper.type === 'class' ? ref.from.upper.block.id.name : null
+          const innerComponentName = className ? `${className}.${identifier.name}` : null
 
-          if ((!considerTypeOf && hasTypeOfOperator(identifier)) || innerComponents.has(identifier.name)) {
-            return;
+          if ((!considerTypeOf && hasTypeOfOperator(identifier)) || innerComponentsMap.has(innerComponentName)) {
+            return
           }
 
           context.report({
             node: identifier,
             messageId: 'undef',
             data: identifier,
-          });
-        });
+          })
+        })
       },
-    };
+    }
   },
-};
+}

@@ -6,13 +6,13 @@
 //  Requirements
 // ------------------------------------------------------------------------------
 
-const { showInvisibles, generateDifferences } = require('prettier-linter-helpers');
+const { showInvisibles, generateDifferences } = require('prettier-linter-helpers')
 
 // ------------------------------------------------------------------------------
 //  Constants
 // ------------------------------------------------------------------------------
 
-const { INSERT, DELETE, REPLACE } = generateDifferences;
+const { INSERT, DELETE, REPLACE } = generateDifferences
 
 // ------------------------------------------------------------------------------
 //  Privates
@@ -22,7 +22,7 @@ const { INSERT, DELETE, REPLACE } = generateDifferences;
 /**
  * @type {import('prettier')}
  */
-let prettier;
+let prettier
 
 // ------------------------------------------------------------------------------
 //  Rule Definition
@@ -36,9 +36,9 @@ let prettier;
  * @returns {void}
  */
 function reportDifference(context, difference) {
-  const { operation, offset, deleteText = '', insertText = '' } = difference;
-  const range = [offset, offset + deleteText.length];
-  const [start, end] = range.map((index) => context.getSourceCode().getLocFromIndex(index));
+  const { operation, offset, deleteText = '', insertText = '' } = difference
+  const range = [offset, offset + deleteText.length]
+  const [start, end] = range.map((index) => context.getSourceCode().getLocFromIndex(index))
 
   context.report({
     messageId: operation,
@@ -48,7 +48,7 @@ function reportDifference(context, difference) {
     },
     loc: { start, end },
     fix: (fixer) => fixer.replaceTextRange(range, insertText),
-  });
+  })
 }
 
 // ------------------------------------------------------------------------------
@@ -89,50 +89,53 @@ module.exports = {
     },
   },
   create(context) {
-    const usePrettierrc = !context.options[1] || context.options[1].usePrettierrc !== false;
-    const eslintFileInfoOptions = (context.options[1] && context.options[1].fileInfoOptions) || {};
-    const sourceCode = context.getSourceCode();
-    const filepath = context.getFilename();
+    const usePrettierrc = !context.options[1] || context.options[1].usePrettierrc !== false
+    const eslintFileInfoOptions = (context.options[1] && context.options[1].fileInfoOptions) || {}
+    const sourceCode = context.getSourceCode()
+    const filepath = context.getFilename()
     // Processors that extract content from a file, such as the markdown
     // plugin extracting fenced code blocks may choose to specify virtual
     // file paths. If this is the case then we need to resolve prettier
     // config and file info using the on-disk path instead of the virtual
     // path.
-    const onDiskFilepath = context.getPhysicalFilename();
-    const source = sourceCode.text;
+    const onDiskFilepath = context.getPhysicalFilename()
+    const source = sourceCode.text
 
-    let classRange;
-    let firstMemberRange;
-    let lastMemberRange;
+    const classRangeMap = new Map()
 
     return {
       ClassDeclaration(node) {
-        classRange = node.body.range;
         const openBraceToken = sourceCode.getFirstToken(node, {
           filter: (x) => x.type === 'Punctuator' && x.value === '{',
-        });
+        })
+        const closeBraceToken = sourceCode.getLastToken(node, {
+          filter: (x) => x.type === 'Punctuator' && x.value === '}',
+        })
         const firstMemberToken = sourceCode.getFirstToken(node, {
           filter: (x) => x.range[0] > openBraceToken.range[1],
-        });
+        })
         const lastMemberToken = sourceCode.getLastToken(node, {
-          filter: (x) => x.range[0] > openBraceToken.range[1],
-        });
-        firstMemberRange = firstMemberToken.range;
-        lastMemberRange = lastMemberToken.range;
+          filter: (x) => x.range[0] < closeBraceToken.range[0],
+        })
+        const className = node.body.parent.id?.name
+        classRangeMap.set(className, {
+          firstMemberRange: [openBraceToken.range[1], firstMemberToken.range[0]],
+          lastMemberRange: [lastMemberToken.range[1], closeBraceToken.range[0]],
+        })
       },
       'Program:exit'() {
         if (!prettier) {
           // Prettier is expensive to load, so only load it if needed.
-          prettier = require('prettier');
+          prettier = require('prettier')
         }
 
-        const eslintPrettierOptions = context.options[0] || {};
+        const eslintPrettierOptions = context.options[0] || {}
 
         const prettierRcOptions = usePrettierrc
           ? prettier.resolveConfig.sync(onDiskFilepath, {
               editorconfig: true,
             })
-          : null;
+          : null
 
         const { ignored, inferredParser } = prettier.getFileInfo.sync(onDiskFilepath, {
           resolveConfig: false,
@@ -140,14 +143,14 @@ module.exports = {
           ignorePath: '.prettierignore',
           plugins: prettierRcOptions ? prettierRcOptions.plugins : null,
           ...eslintFileInfoOptions,
-        });
+        })
 
         // Skip if file is ignored using a .prettierignore file
         if (ignored) {
-          return;
+          return
         }
 
-        const initialOptions = {};
+        const initialOptions = {}
 
         // ESLint supports processors that let you extract and lint JS
         // fragments within a non-JS language. In the cases where prettier
@@ -183,9 +186,9 @@ module.exports = {
           // 2. `eslint-plugin-html`
           // 3. `eslint-plugin-markdown@1` (replacement: `eslint-plugin-markdown@2+`)
           // 4. `eslint-plugin-svelte3` (replacement: `eslint-plugin-svelte@2+`)
-          const parserBlocklist = [null, 'markdown', 'html'];
+          const parserBlocklist = [null, 'markdown', 'html']
 
-          let inferParserToBabel = parserBlocklist.includes(inferredParser);
+          let inferParserToBabel = parserBlocklist.includes(inferredParser)
 
           switch (inferredParser) {
             // it could be processed by `@graphql-eslint/eslint-plugin` or `eslint-plugin-graphql`
@@ -194,9 +197,9 @@ module.exports = {
                 // for `eslint-plugin-graphql`, see https://github.com/apollographql/eslint-plugin-graphql/blob/master/src/index.js#L416
                 source.startsWith('ESLintPluginGraphQLFile`')
               ) {
-                inferParserToBabel = true;
+                inferParserToBabel = true
               }
-              break;
+              break
             }
             // it could be processed by `@ota-meshi/eslint-plugin-svelte`, `eslint-plugin-svelte` or `eslint-plugin-svelte3`
             case 'svelte': {
@@ -204,13 +207,13 @@ module.exports = {
               if (!context.parserPath.includes('svelte-eslint-parser')) {
                 // We do not support `eslint-plugin-svelte3`,
                 // the users should run `prettier` on `.svelte` files manually
-                return;
+                return
               }
             }
           }
 
           if (inferParserToBabel) {
-            initialOptions.parser = 'babel';
+            initialOptions.parser = 'babel'
           }
         } else {
           // Similar to https://github.com/prettier/stylelint-prettier/pull/22
@@ -231,9 +234,9 @@ module.exports = {
             'mdx',
             'angular',
             'svelte',
-          ];
+          ]
           if (parserBlocklist.includes(inferredParser)) {
-            return;
+            return
           }
         }
 
@@ -242,7 +245,7 @@ module.exports = {
           ...prettierRcOptions,
           ...eslintPrettierOptions,
           filepath,
-        };
+        }
 
         // prettier.format() may throw a SyntaxError if it cannot parse the
         // source code it is given. Usually for JS files this isn't a
@@ -252,48 +255,57 @@ module.exports = {
         // files throw an error if they contain unclosed elements, such as
         // `<template><div></template>. In this case report an error at the
         // point at which parsing failed.
-        let prettierSource;
+        let prettierSource
         try {
-          prettierSource = prettier.format(source, prettierOptions);
+          prettierSource = prettier.format(source, prettierOptions)
         } catch (err) {
           if (!(err instanceof SyntaxError)) {
-            throw err;
+            throw err
           }
 
-          let message = 'Parsing error: ' + err.message;
+          let message = 'Parsing error: ' + err.message
 
           // Prettier's message contains a codeframe style preview of the
           // invalid code and the line/column at which the error occurred.
           // ESLint shows those pieces of information elsewhere already so
           // remove them from the message
           if (err.codeFrame) {
-            message = message.replace(`\n${err.codeFrame}`, '');
+            message = message.replace(`\n${err.codeFrame}`, '')
           }
           if (err.loc) {
-            message = message.replace(/ \(\d+:\d+\)$/, '');
+            message = message.replace(/ \(\d+:\d+\)$/, '')
           }
 
-          context.report({ message, loc: err.loc });
+          context.report({ message, loc: err.loc })
 
-          return;
+          return
         }
 
         if (source !== prettierSource) {
-          const differences = generateDifferences(source, prettierSource);
+          const differences = generateDifferences(source, prettierSource)
 
           for (const difference of differences) {
-            if (classRange) {
-              const ignore =
-                difference.offset === firstMemberRange[0] - 3 || difference.offset === lastMemberRange[1] - 3;
+            if (classRangeMap.size > 0) {
+              const { offset } = difference
+              const ignore = Array.from(classRangeMap.values()).some(({ firstMemberRange, lastMemberRange }) => {
+                const ignore =
+                  (offset >= firstMemberRange[0] &&
+                    offset <= firstMemberRange[1] &&
+                    firstMemberRange[1] - firstMemberRange[0] <= 4) ||
+                  (offset >= lastMemberRange[0] &&
+                    offset <= lastMemberRange[1] &&
+                    lastMemberRange[1] - lastMemberRange[0] <= 4)
+                return ignore
+              })
               if (!ignore) {
-                reportDifference(context, difference);
+                reportDifference(context, difference)
               }
             } else {
-              reportDifference(context, difference);
+              reportDifference(context, difference)
             }
           }
         }
       },
-    };
+    }
   },
-};
+}

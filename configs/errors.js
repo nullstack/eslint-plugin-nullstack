@@ -282,4 +282,4 @@ module.exports = {
      */
     'valid-typeof': 'error',
   },
-};
+}

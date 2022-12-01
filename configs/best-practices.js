@@ -43,12 +43,6 @@ module.exports = {
     'no-console': 'warn',
 
     /**
-     * Disallow `continue` statements
-     * @see https://eslint.org/docs/latest/rules/no-continue
-     */
-    'no-continue': 'warn',
-
-    /**
      * Disallow deleting variables
      * @see https://eslint.org/docs/latest/rules/no-delete-var
      */
@@ -65,12 +59,6 @@ module.exports = {
      * @see https://eslint.org/docs/latest/rules/no-empty
      */
     'no-empty': 'warn',
-
-    /**
-     * Disallow empty functions
-     * @see https://eslint.org/docs/latest/rules/no-empty-function
-     */
-    'no-empty-function': 'warn',
 
     /**
      * Disallow unnecessary calls to `.bind()`
@@ -181,12 +169,6 @@ module.exports = {
     'no-undef-init': 'warn',
 
     /**
-     * Disallow the use of `undefined` as an identifier
-     * @see https://eslint.org/docs/latest/rules/no-undefined
-     */
-    'no-undefined': 'warn',
-
-    /**
      * Disallow ternary operators when simpler alternatives exist
      * @see https://eslint.org/docs/latest/rules/no-unneeded-ternary
      */
@@ -294,4 +276,4 @@ module.exports = {
      */
     yoda: 'warn',
   },
-};
+}
