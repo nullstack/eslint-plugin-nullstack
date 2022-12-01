@@ -30,7 +30,7 @@ Once the `eslint-plugin-nullstack` package is installed, you can use it by speci
 {
   "trailingComma": "all",
   "tabWidth": 2,
-  "semi": true,
+  "semi": false,
   "singleQuote": true,
   "printWidth": 120
 }
