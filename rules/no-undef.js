@@ -7,6 +7,11 @@ function hasTypeOfOperator(node) {
   return parent.type === 'UnaryExpression' && parent.operator === 'typeof'
 }
 
+function getClassName(node) {
+  if (node.upper.type === 'class') return node.upper.block.id.name
+  return getClassName(node.upper)
+}
+
 module.exports = {
   meta: {
     type: 'problem',
@@ -55,7 +60,7 @@ module.exports = {
 
         globalScope.through.forEach((ref) => {
           const identifier = ref.identifier
-          const className = ref.from.upper.type === 'class' ? ref.from.upper.block.id.name : null
+          const className = getClassName(ref.from)
           const innerComponentName = className ? `${className}.${identifier.name}` : null
 
           if ((!considerTypeOf && hasTypeOfOperator(identifier)) || innerComponentsMap.has(innerComponentName)) {
