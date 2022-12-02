@@ -25,18 +25,6 @@ Once the `eslint-plugin-nullstack` package is installed, you can use it by speci
 ```
 
 ```jsonc
-// .prettierrc
-
-{
-  "trailingComma": "all",
-  "tabWidth": 2,
-  "semi": false,
-  "singleQuote": true,
-  "printWidth": 120
-}
-```
-
-```jsonc
 // package.json
 
 "scripts": {
@@ -51,6 +39,31 @@ Once the `eslint-plugin-nullstack` package is installed, you can use it by speci
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
+  }
+}
+```
+
+You can override `prettier`'s default settings by updating the `nullstack/prettier` rule
+
+```jsonc
+// .eslintrc
+
+{
+  "extends": "plugin:nullstack/recommended",
+  "rules": {
+    "nullstack/prettier": [
+      "warn",
+      {
+        "trailingComma": "all",
+        "tabWidth": 2,
+        "semi": false,
+        "singleQuote": true,
+        "printWidth": 120
+      },
+      {
+        "usePrettierrc": false
+      }
+    ]
   }
 }
 ```

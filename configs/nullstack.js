@@ -30,7 +30,19 @@ module.exports = {
      * Runs Prettier as an ESLint rule and reports differences as individual ESLint issues.
      * @see https://github.com/prettier/eslint-plugin-prettier
      */
-    'nullstack/prettier': 'warn',
+    'nullstack/prettier': [
+      'warn',
+      {
+        trailingComma: 'all',
+        tabWidth: 2,
+        semi: false,
+        singleQuote: true,
+        printWidth: 120,
+      },
+      {
+        usePrettierrc: false,
+      },
+    ],
 
     /**
      * Components without children can be self-closed to avoid unnecessary extra closing tag.
