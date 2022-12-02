@@ -40,7 +40,7 @@ module.exports = {
      * Disallow the use of `console`
      * @see https://eslint.org/docs/latest/rules/no-console
      */
-    'no-console': 'warn',
+    'no-console': ['warn', { allow: ['info', 'warn', 'error'] }],
 
     /**
      * Disallow deleting variables
