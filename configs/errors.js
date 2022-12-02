@@ -145,12 +145,6 @@ module.exports = {
     'no-import-assign': 'error',
 
     /**
-     * Disallow variable or `function` declarations in nested blocks
-     * @see https://eslint.org/docs/latest/rules/no-inner-declarations
-     */
-    'no-inner-declarations': 'error',
-
-    /**
      * Disallow invalid regular expression strings in `RegExp` constructors
      * @see https://eslint.org/docs/latest/rules/no-invalid-regexp
      */
