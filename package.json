@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-nullstack",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "license": "ISC",
   "main": "index.js",
   "files": [
@@ -23,5 +23,16 @@
     "eslint-plugin-unused-imports": "~2.0.0",
     "prettier": "~2.8.0",
     "typescript": "~4.9.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nullstack/eslint-plugin-nullstack"
+  },
+  "homepage": "https://github.com/nullstack/eslint-plugin-nullstack",
+  "bugs": "https://github.com/nullstack/eslint-plugin-nullstack/issues",
+  "keywords": [
+    "eslint",
+    "eslint-plugin",
+    "nullstack"
+  ]
 }
