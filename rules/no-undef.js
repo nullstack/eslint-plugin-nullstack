@@ -8,7 +8,8 @@ function hasTypeOfOperator(node) {
 }
 
 function getClassName(node) {
-  if (node.upper.type === 'class') return node.upper.block.id.name
+  if (!node) return
+  if (node.upper?.type === 'class') return node.upper.block.id.name
   return getClassName(node.upper)
 }
 
