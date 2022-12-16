@@ -50,13 +50,13 @@ module.exports = {
     'import/no-duplicates': 'warn',
   },
   settings: {
-    'import/extensions': ['.js', '.jsx', '.ts', '.tsx', '.njs', '.nts'],
+    'import/extensions': ['.js', '.jsx', '.ts', '.d.ts', '.tsx', '.njs', '.nts'],
     'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx', '.nts'],
+      '@typescript-eslint/parser': ['.ts', '.d.ts', '.tsx', '.nts'],
     },
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.njs', '.nts'],
+        extensions: ['.js', '.jsx', '.ts', '.d.ts', '.tsx', '.njs', '.nts'],
       },
     },
   },
