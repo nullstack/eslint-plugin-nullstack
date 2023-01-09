@@ -31,12 +31,6 @@ module.exports = {
     'no-case-declarations': 'warn',
 
     /**
-     * Disallow arrow functions where they could be confused with comparisons
-     * @see https://eslint.org/docs/latest/rules/no-confusing-arrow
-     */
-    'no-confusing-arrow': 'warn',
-
-    /**
      * Disallow the use of `console`
      * @see https://eslint.org/docs/latest/rules/no-console
      */
