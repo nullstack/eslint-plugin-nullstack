@@ -78,6 +78,7 @@ Main features:
 - Automatic organize imports
 - Automatic remove unused imports
 - Automatic code formatting (custom prettier implementation)
+- Automatic sort class members following Nullstack's lifecycle
 
 This plugin is based on the following plugins and configurations:
 
@@ -88,6 +89,7 @@ This plugin is based on the following plugins and configurations:
 - [`eslint-plugin-prettier`](https://github.com/prettier/eslint-plugin-prettier)
 - [`eslint-plugin-react`](https://github.com/jsx-eslint/eslint-plugin-react)
 - [`eslint-plugin-unused-imports`](https://github.com/sweepline/eslint-plugin-unused-imports)
+- [`eslint-plugin-sort-class-members`](https://github.com/bryanrsmith/eslint-plugin-sort-class-members)
 
 Nullstack rules:
 

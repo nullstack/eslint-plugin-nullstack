@@ -6,6 +6,7 @@ module.exports = {
     'self-closing-comp': require('eslint-plugin-react/lib/rules/self-closing-comp'),
     'no-unused-imports': require('eslint-plugin-unused-imports/lib/rules/no-unused-imports'),
     'no-unused-vars': require('eslint-plugin-unused-imports/lib/rules/no-unused-vars'),
+    'sort-class-members': require('eslint-plugin-sort-class-members/lib/rules/sort-class-members'),
   },
   configs: {
     recommended: {
