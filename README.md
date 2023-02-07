@@ -88,6 +88,7 @@ This plugin is based on the following plugins and configurations:
 - [`eslint-plugin-prettier`](https://github.com/prettier/eslint-plugin-prettier)
 - [`eslint-plugin-react`](https://github.com/jsx-eslint/eslint-plugin-react)
 - [`eslint-plugin-unused-imports`](https://github.com/sweepline/eslint-plugin-unused-imports)
+- [`eslint-plugin-sort-class-members`](https://github.com/bryanrsmith/eslint-plugin-sort-class-members)
 
 Nullstack rules:
 
@@ -97,3 +98,4 @@ Nullstack rules:
 - `nullstack/self-closing-comp` - Based on [`react/self-closing-comp`](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md)
 - `nullstack/no-unused-imports` - Based on [`unused-imports/no-unused-imports`](https://github.com/sweepline/eslint-plugin-unused-imports)
 - `nullstack/no-unused-vars` - Based on [`unused-imports/no-unused-vars`](https://github.com/sweepline/eslint-plugin-unused-imports)
+- `nullstack/sort-class-members` - Based on [`sort-class-members/sort-class-members`](https://github.com/bryanrsmith/eslint-plugin-sort-class-members)

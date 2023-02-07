@@ -101,29 +101,8 @@ module.exports = {
     const onDiskFilepath = context.getPhysicalFilename()
     const source = sourceCode.text
 
-    const classRangeMap = new Map()
-
     return {
-      ClassDeclaration(node) {
-        const openBraceToken = sourceCode.getFirstToken(node, {
-          filter: (x) => x.type === 'Punctuator' && x.value === '{',
-        })
-        const closeBraceToken = sourceCode.getLastToken(node, {
-          filter: (x) => x.type === 'Punctuator' && x.value === '}',
-        })
-        const firstMemberToken = sourceCode.getFirstToken(node, {
-          filter: (x) => x.range[0] > openBraceToken.range[1],
-        })
-        const lastMemberToken = sourceCode.getLastToken(node, {
-          filter: (x) => x.range[0] < closeBraceToken.range[0],
-        })
-        const className = node.body.parent.id?.name
-        classRangeMap.set(className, {
-          firstMemberRange: [openBraceToken.range[1], firstMemberToken.range[0]],
-          lastMemberRange: [lastMemberToken.range[1], closeBraceToken.range[0]],
-        })
-      },
-      'Program:exit'() {
+      Program() {
         if (!prettier) {
           // Prettier is expensive to load, so only load it if needed.
           prettier = require('prettier')
@@ -263,7 +242,7 @@ module.exports = {
             throw err
           }
 
-          let message = 'Parsing error: ' + err.message
+          let message = `Parsing error: ${err.message}`
 
           // Prettier's message contains a codeframe style preview of the
           // invalid code and the line/column at which the error occurred.
@@ -285,22 +264,9 @@ module.exports = {
           const differences = generateDifferences(source, prettierSource)
 
           for (const difference of differences) {
-            if (classRangeMap.size > 0) {
-              const { offset } = difference
-              const ignore = Array.from(classRangeMap.values()).some(({ firstMemberRange, lastMemberRange }) => {
-                const ignore =
-                  (offset >= firstMemberRange[0] &&
-                    offset <= firstMemberRange[1] &&
-                    firstMemberRange[1] - firstMemberRange[0] <= 4) ||
-                  (offset >= lastMemberRange[0] &&
-                    offset <= lastMemberRange[1] &&
-                    lastMemberRange[1] - lastMemberRange[0] <= 4)
-                return ignore
-              })
-              if (!ignore) {
-                reportDifference(context, difference)
-              }
-            } else {
+            const { deleteText } = difference
+            const ignore = deleteText?.match(/\n/g)?.length <= 1
+            if (!ignore) {
               reportDifference(context, difference)
             }
           }

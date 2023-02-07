@@ -66,6 +66,36 @@ module.exports = {
      * @see https://github.com/sweepline/eslint-plugin-unused-imports/blob/master/docs/rules/no-unused-imports.md
      */
     'nullstack/no-unused-imports': 'warn',
+
+    /**
+     * A rule for enforcing consistent ES6 class member order.
+     * @see https://github.com/bryanrsmith/eslint-plugin-sort-class-members
+     */
+    'nullstack/sort-class-members': [
+      'warn',
+      {
+        order: [
+          '[static-methods]',
+          'prepare',
+          'initiate',
+          'launch',
+          'hydrate',
+          'update',
+          'terminate',
+          '[methods]',
+          'render',
+        ],
+        accessorPairPositioning: 'getThenSet',
+      },
+    ],
+
+    /**
+     * Rules to detect incorrect use of DOM globals in order to properly do SSR and in general share code between client-side JS and Node.js modules.
+     * @see https://github.com/kopiro/eslint-plugin-ssr-friendly
+     */
+    'nullstack/no-dom-globals-in-module-scope': 'error',
+    'nullstack/no-dom-globals-in-prepare': 'error',
+    'nullstack/no-dom-globals-in-initiate': 'error',
   },
   overrides: [
     {
