@@ -76,15 +76,19 @@ module.exports = {
       {
         order: [
           '[static-methods]',
+          '[methods]',
           'prepare',
           'initiate',
           'launch',
           'hydrate',
           'update',
           'terminate',
-          '[methods]',
+          '[inner-components]',
           'render',
         ],
+        groups: {
+          'inner-components': [{ name: '/render.+/', type: 'method' }]
+        },
         accessorPairPositioning: 'getThenSet',
       },
     ],
