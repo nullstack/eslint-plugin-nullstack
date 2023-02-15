@@ -74,18 +74,9 @@ module.exports = {
     'nullstack/sort-class-members': [
       'warn',
       {
-        order: [
-          'prepare',
-          'initiate',
-          'launch',
-          'hydrate',
-          'update',
-          'terminate',
-          '[inner-components]',
-          'render',
-        ],
+        order: ['prepare', 'initiate', 'launch', 'hydrate', 'update', 'terminate', '[inner-components]', 'render'],
         groups: {
-          'inner-components': [{ name: '/render.+/', type: 'method' }]
+          'inner-components': [{ name: '/render.+/', type: 'method' }],
         },
         accessorPairPositioning: 'getThenSet',
       },

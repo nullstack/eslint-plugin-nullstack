@@ -101,8 +101,13 @@ module.exports = {
     const onDiskFilepath = context.getPhysicalFilename()
     const source = sourceCode.text
 
+    const ranges = []
+
     return {
-      Program() {
+      ClassDeclaration(node) {
+        ranges.push(node.body.range)
+      },
+      'Program:exit'() {
         if (!prettier) {
           // Prettier is expensive to load, so only load it if needed.
           prettier = require('prettier')
@@ -264,8 +269,10 @@ module.exports = {
           const differences = generateDifferences(source, prettierSource)
 
           for (const difference of differences) {
-            const { deleteText } = difference
-            const ignore = deleteText?.match(/\n/g)?.length <= 1
+            const { offset, deleteText } = difference
+            const range = ranges.find((range) => offset >= range[0] && offset <= range[1])
+            const ignore =
+              !!range && (offset <= range[0] + 3 || offset >= range[1] - 3) && deleteText?.match(/\n/g)?.length <= 1
             if (!ignore) {
               reportDifference(context, difference)
             }
