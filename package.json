@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-nullstack",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "license": "ISC",
   "main": "index.js",
   "files": [

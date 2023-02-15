@@ -75,8 +75,6 @@ module.exports = {
       'warn',
       {
         order: [
-          '[static-methods]',
-          '[methods]',
           'prepare',
           'initiate',
           'launch',
