@@ -22,7 +22,6 @@ module.exports = {
         './configs/best-practices',
         './configs/typescript',
         './configs/imports',
-        './configs/order-imports',
         './configs/nullstack',
       ],
       parserOptions: {

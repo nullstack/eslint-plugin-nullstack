@@ -48,6 +48,25 @@ module.exports = {
      * @see https://github.com/import-js/eslint-plugin-import/blob/v2.26.0/docs/rules/no-duplicates.md
      */
     'import/no-duplicates': 'warn',
+
+    /**
+     * Enforce a convention in the order of `require()` / `import` statements.
+     * +(fixable) The `--fix` option on the [command line] automatically fixes problems reported by this rule.
+     * @see https://github.com/import-js/eslint-plugin-import/blob/v2.26.0/docs/rules/order.md
+     */
+    'import/order': [
+      'warn',
+      {
+        groups: [
+          ['builtin', 'external', 'internal'],
+          ['parent', 'sibling', 'index'],
+        ],
+        pathGroups: [{ pattern: 'nullstack', group: 'builtin', position: 'before' }],
+        pathGroupsExcludedImportTypes: [],
+        'newlines-between': 'always',
+        alphabetize: { order: 'asc', caseInsensitive: true },
+      },
+    ],
   },
   settings: {
     'import/extensions': ['.js', '.jsx', '.ts', '.d.ts', '.tsx', '.njs', '.nts'],
