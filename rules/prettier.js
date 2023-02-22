@@ -272,7 +272,7 @@ module.exports = {
             const { offset, deleteText } = difference
             const range = ranges.find((range) => offset >= range[0] && offset <= range[1])
             const ignore =
-              !!range && (offset <= range[0] + 3 || offset >= range[1] - 3) && deleteText?.match(/\n/g)?.length <= 1
+              !!range && (offset <= range[0] + 3 || offset >= range[1] - 3) && deleteText?.match(/\n/g)?.length <= 2
             if (!ignore) {
               reportDifference(context, difference)
             }
