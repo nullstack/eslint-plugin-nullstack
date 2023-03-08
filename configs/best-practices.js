@@ -199,12 +199,6 @@ module.exports = {
     'no-useless-constructor': 'warn',
 
     /**
-     * Disallow unnecessary escape characters
-     * @see https://eslint.org/docs/latest/rules/no-useless-escape
-     */
-    'no-useless-escape': 'warn',
-
-    /**
      * Disallow renaming import, export, and destructured assignments to the same name
      * @see https://eslint.org/docs/latest/rules/no-useless-rename
      */
