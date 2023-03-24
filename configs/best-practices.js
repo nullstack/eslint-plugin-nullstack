@@ -67,12 +67,6 @@ module.exports = {
     'no-extra-boolean-cast': 'warn',
 
     /**
-     * Disallow unnecessary semicolons
-     * @see https://eslint.org/docs/latest/rules/no-extra-semi
-     */
-    'no-extra-semi': 'warn',
-
-    /**
      * Disallow leading or trailing decimal points in numeric literals
      * @see https://eslint.org/docs/latest/rules/no-floating-decimal
      */

@@ -63,13 +63,6 @@ module.exports = {
         '@typescript-eslint/no-extra-non-null-assertion': 'warn',
 
         /**
-         * Disallow unnecessary semicolons.
-         * @see https://typescript-eslint.io/rules/no-extra-semi
-         */
-        'no-extra-semi': 'off',
-        '@typescript-eslint/no-extra-semi': 'warn',
-
-        /**
          * Disallow explicit type declarations for variables or parameters initialized to a number, string, or boolean.
          * @see https://typescript-eslint.io/rules/no-inferrable-types
          */
