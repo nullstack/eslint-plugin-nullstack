@@ -32,18 +32,6 @@ module.exports = {
     'import/export': 'error',
 
     /**
-     * Reports use of an exported name as the locally imported name of a default export.
-     * @see https://github.com/import-js/eslint-plugin-import/blob/v2.26.0/docs/rules/no-named-as-default.md
-     */
-    'import/no-named-as-default': 'warn',
-
-    /**
-     * Reports use of an exported name as a property on the default export.
-     * @see https://github.com/import-js/eslint-plugin-import/blob/v2.26.0/docs/rules/no-named-as-default-member.md
-     */
-    'import/no-named-as-default-member': 'warn',
-
-    /**
      * Reports if a resolved path is imported more than once.
      * @see https://github.com/import-js/eslint-plugin-import/blob/v2.26.0/docs/rules/no-duplicates.md
      */
