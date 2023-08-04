@@ -247,12 +247,6 @@ module.exports = {
     'prefer-template': 'warn',
 
     /**
-     * Enforce sorted import declarations within modules
-     * @see https://eslint.org/docs/latest/rules/sort-imports
-     */
-    'sort-imports': ['warn', { ignoreCase: true, ignoreDeclarationSort: true }],
-
-    /**
      * Enforce consistent spacing after the `//` or `/*` in a comment
      * @see https://eslint.org/docs/latest/rules/spaced-comment
      */

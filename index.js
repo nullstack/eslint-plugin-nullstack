@@ -9,6 +9,8 @@ module.exports = {
     'no-unused-vars': require('eslint-plugin-unused-imports/lib/rules/no-unused-vars'),
     'sort-class-members': require('eslint-plugin-sort-class-members/dist/rules/sort-class-members')
       .sortClassMembersRule,
+    'simple-import-sort-imports': require('eslint-plugin-simple-import-sort/imports'),
+    'simple-import-sort-exports': require('eslint-plugin-simple-import-sort/exports'),
   },
   configs: {
     recommended: {

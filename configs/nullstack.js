@@ -89,6 +89,16 @@ module.exports = {
     'nullstack/no-dom-globals-in-module-scope': 'error',
     'nullstack/no-dom-globals-in-prepare': 'error',
     'nullstack/no-dom-globals-in-initiate': 'error',
+
+    /**
+     * Rules to enforce a convention in module import order
+     * @see https://github.com/lydell/eslint-plugin-simple-import-sort
+     */
+    'nullstack/simple-import-sort-imports': [
+      'warn',
+      { groups: [['^\\u0000'], ['^nullstack'], ['^@?\\w'], ['^'], ['^\\.']] },
+    ],
+    'nullstack/simple-import-sort-exports': 'warn',
   },
   overrides: [
     {
